@@ -60,6 +60,29 @@ const pAequorFactory = (num, arr) => {
             };
             let percentage = Math.round((cOrG / this.dna.length) * 100);
             return(percentage >= 60 ? true : false);
+        },
+
+        complementStrand(){
+            let complementDNAStrands = [];
+            for(let i = 0; i < this.dna.length; i++){
+                switch(this.dna[i]){
+                    case 'A':
+                        complementDNAStrands.push('T');
+                        break;
+                    case 'T':
+                        complementDNAStrands.push('A');
+                        break;
+                    case 'C':
+                        complementDNAStrands.push('G');
+                        break;
+                    case 'G':
+                        complementDNAStrands.push('C');
+                        break;
+                    default:
+                        complementDNAStrands.push('?');
+                }
+            };
+            return complementDNAStrands;
         }
     }
 }
@@ -71,6 +94,7 @@ for(let i = 0; i < 30; i++){
         let randomSpeciesNumber = Math.round(Math.random() * 1000);
         let notInNumList = false;
         while (!notInNumList){
+            console.log('here');
             notInNumList = true;
             for(let i = 0; i < instancesNumbers.length; i++){
                 if (instancesNumbers[i] === randomSpeciesNumber){
@@ -85,4 +109,4 @@ for(let i = 0; i < 30; i++){
     const instance = pAequorFactory(generateRandNum(), mockUpStrand());
     instancesList.push(instance);
 }
-console.log(instancesList);
+
